@@ -7,19 +7,16 @@ import (
 	"github.com/zavicba/twitter-app-demo/routers"
 	"log"
 	"net/http"
-	"os"
 )
 
 // Manejarores seteo el puerto y pongo a escuchar el servidor
-func Manejadores()  {
-	router:= mux.NewRouter()
+func Manejadores() {
+	router := mux.NewRouter()
 
 	router.HandleFunc("/registro", middlew.ChequeoDb(routers.Registro)).Methods("POST")
 
-	PORT := os.Getenv("PORT")
-	if PORT == "" {
-		PORT = "8080"
-	}
+	PORT := "8081"
+
 	handler := cors.AllowAll().Handler(router)
-	log.Fatal(http.ListenAndServe(":"+PORT,handler))
+	log.Fatal(http.ListenAndServe(":"+PORT, handler))
 }

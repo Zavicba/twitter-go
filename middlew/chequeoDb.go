@@ -6,12 +6,12 @@ import (
 )
 
 // ChequeoDb es el middleware que me permite conocer el estado de la base de datos
-func ChequeoDb(next http.HandlerFunc) http.HandlerFunc  {
-	return func(writer http.ResponseWriter, request *http.Request) {
+func ChequeoDb(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
 		if db.ChequeoConection() == 0 {
-			http.Error(writer, "Se perdio la conexion con la base de datos", 500)
+			http.Error(w, "Se perdio la conexion con la base de datos", 500)
 			return
 		}
-		next.ServeHTTP(writer, request)
+		next.ServeHTTP(w, r)
 	}
 }
