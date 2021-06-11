@@ -9,7 +9,7 @@ import (
 
 func InsertarRegistro(usuario models.Usuario) (string, bool, error) {
 
-	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
 	db := MongoConnect.Database("twitter-app-demo")

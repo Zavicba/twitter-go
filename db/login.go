@@ -11,11 +11,14 @@ func UserLogin(email string, password string) (models.Usuario, bool) {
 	if encontrado == false {
 		return usuario, false
 	}
+
 	passwordBytes := []byte(password)
 	passworDb := []byte(usuario.Password)
+
 	err := bcrypt.CompareHashAndPassword(passworDb, passwordBytes)
 	if err != nil {
 		return usuario, false
 	}
+
 	return usuario, true
 }

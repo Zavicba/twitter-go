@@ -5,15 +5,18 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
+	"time"
 )
 
 // MongoConnect es el objeto de conexion a la base de datos
 var MongoConnect = ConectarDb()
 var clientOptions = options.Client().ApplyURI("mongodb+srv://zavicva:Cordoba2020@cluster0.wmk3y.mongodb.net/test?authSource=admin&replicaSet=atlas-5iu4jf-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true")
 
+
 // ConectarDb me permite conectarme a la base de datos
 func ConectarDb() *mongo.Client {
-	client, err := mongo.Connect(context.TODO(), clientOptions)
+	clientOptions.SetConnectTimeout(time.Second*15)
+	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
 		log.Fatal(err.Error())
 		return client
