@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// VerPerfil es la rutina que se encarga de mostrar un perfil
 func VerPerfil(w http.ResponseWriter, r *http.Request)  {
 	Id := r.URL.Query().Get("id")
 	if len(Id) < 1 {

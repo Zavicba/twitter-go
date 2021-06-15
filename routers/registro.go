@@ -10,7 +10,7 @@ import (
 // Registro es la funcion para crear un usuario en la db de usuario
 func Registro(w http.ResponseWriter, r *http.Request) {
 
-	var t = models.Usuario{}
+	var t models.Usuario
 
 	err := json.NewDecoder(r.Body).Decode(&t)
 	if err != nil {
